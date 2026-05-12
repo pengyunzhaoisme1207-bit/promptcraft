@@ -191,6 +191,16 @@ export function getPromptSearchIndex(): PromptSearchItem[] {
   }));
 }
 
+export function getPromptCopyText(prompt: Pick<PromptData, 'prompt' | 'role' | 'task' | 'format'>): string {
+  const sections = [
+    prompt.role ? `Role:\n${prompt.role}` : null,
+    prompt.task ? `Task:\n${prompt.task}` : null,
+    prompt.format ? `Format:\n${prompt.format}` : null,
+  ].filter(Boolean);
+
+  return sections.length > 0 ? sections.join('\n\n') : prompt.prompt;
+}
+
 export interface PromptData {
   id: string;
   title: string;

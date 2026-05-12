@@ -4,7 +4,7 @@ import AdSlot from '@/components/AdSlot';
 import PromptCard from '@/components/PromptCard';
 import CopyButton from '@/components/CopyButton';
 import RTFView from '@/components/RTFView';
-import { getPromptBySlug, readPrompts, getRelatedPrompts } from '@/lib/data';
+import { getPromptBySlug, readPrompts, getRelatedPrompts, getPromptCopyText } from '@/lib/data';
 import { absoluteUrl, SITE_NAME, titleCaseSlug } from '@/lib/site';
 
 export function generateStaticParams() {
@@ -54,6 +54,7 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
   if (!prompt) notFound();
 
   const related = getRelatedPrompts(prompt.related, prompt.slug, 6);
+  const promptCopyText = getPromptCopyText(prompt);
 
   const scenarioLabel = titleCaseSlug(prompt.scenario);
   const categoryLabel = titleCaseSlug(prompt.category);
@@ -149,10 +150,10 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-gray-900">Your Prompt</h2>
-          <CopyButton text={prompt.prompt} />
+          <CopyButton text={promptCopyText} />
         </div>
         <pre className="whitespace-pre-wrap rounded-xl bg-gray-50 p-6 text-sm text-gray-800 border border-gray-200 font-mono leading-relaxed">
-          {prompt.prompt}
+          {promptCopyText}
         </pre>
       </div>
 
