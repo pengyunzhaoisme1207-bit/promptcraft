@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import PromptCard from '@/components/PromptCard';
-import { readCollections, getCollectionBySlug, CollectionData, PromptData } from '@/lib/data';
+import PromptListGrid from '@/components/PromptListGrid';
+import { getCollectionBySlug, readCollections, CollectionData } from '@/lib/data';
 
 export function generateStaticParams() {
   return readCollections().map((collection: CollectionData) => ({ slug: collection.slug }));
@@ -36,20 +36,18 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
       <nav className="mb-6 text-sm text-gray-500">
         <Link href="/" className="hover:text-gray-900">Home</Link>
         <span className="mx-2">/</span>
-        <span className="text-gray-900">Collections</span>
+        <Link href="/collections" className="hover:text-gray-900">Collections</Link>
+        <span className="mx-2">/</span>
+        <span className="text-gray-900">{collection.name}</span>
       </nav>
 
-      <div className="mb-8">
+      <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900">{collection.name}</h1>
         <p className="mt-3 text-lg text-gray-600">{collection.description}</p>
         <p className="mt-2 text-sm text-gray-500">{collection.prompts.length} curated prompts</p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {collection.prompts.map((prompt: PromptData) => (
-          <PromptCard key={prompt.slug} prompt={prompt} />
-        ))}
-      </div>
+      <PromptListGrid prompts={collection.prompts} showGrouping={false} />
     </div>
   );
 }

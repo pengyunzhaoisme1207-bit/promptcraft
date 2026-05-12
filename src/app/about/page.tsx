@@ -22,10 +22,10 @@ export default function AboutPage() {
         </ul>
         <h2 className="text-xl font-semibold text-gray-900">What&apos;s Inside</h2>
         <ul className="list-disc pl-6 space-y-2">
-          <li><strong>300+ tested prompts</strong> across writing, coding, marketing, analysis, image generation, and more</li>
-          <li><strong>12 scenario categories</strong> — organized by what you want to do, not by tool</li>
+          <li><strong>1000+ tested prompts</strong> across writing, coding, marketing, analysis, image generation, and more</li>
+          <li><strong>11 scenario categories</strong> — organized by what you want to do, not by tool</li>
           <li><strong>6 tool-specific collections</strong> — prompts optimized for ChatGPT, Claude, Gemini, Midjourney, DALL-E, and Stable Diffusion</li>
-          <li><strong>10 comprehensive guides</strong> — teaching you the principles behind effective prompting</li>
+          <li><strong>18 comprehensive guides</strong> — teaching you the principles behind effective prompting</li>
           <li><strong>Prompt Generator</strong> — an interactive tool that builds custom prompts from templates</li>
         </ul>
         <h2 className="text-xl font-semibold text-gray-900">Get Started</h2>

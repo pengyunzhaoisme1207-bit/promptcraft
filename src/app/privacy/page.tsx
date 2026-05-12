@@ -8,13 +8,13 @@ export default function PrivacyPage() {
         <p>PromptCraft is a static website. We do not collect, store, or process any personal information. We do not require accounts, login credentials, or personal data to use our prompt library.</p>
 
         <h2 className="text-xl font-semibold text-gray-900">Cookies</h2>
-        <p>When we enable advertising through Google AdSense, third-party cookies may be set for ad personalization. Google uses cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" className="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>.</p>
+        <p>When we enable advertising through Google AdSense, third-party cookies may be set for ad personalization. Google uses cookies to serve ads based on your prior visits to this and other websites.</p>
+        <p className="mt-2">Google&apos;s use of advertising cookies enables it and its partners to serve ads based on your visit to this site and/or other sites on the Internet. You may opt out of <a href="https://www.google.com/settings/ads" className="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">personalized advertising</a> by visiting Google Ads Settings. Additionally, you can opt out of a third-party vendor&apos;s use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/" className="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.</p>
 
         <h2 className="text-xl font-semibold text-gray-900">Third-Party Services</h2>
         <p>We may use the following third-party services:</p>
         <ul className="list-disc pl-6 space-y-1">
           <li>Google AdSense — for advertising (see <a href="https://policies.google.com/privacy" className="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>)</li>
-          <li>Google Analytics — for website usage analysis (see <a href="https://policies.google.com/technologies/partner-sites" className="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">Google Partner Sites</a>)</li>
           <li>Vercel — for hosting (see <a href="https://vercel.com/legal/vercel-privacy-policy" className="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">Vercel Privacy Policy</a>)</li>
         </ul>
 

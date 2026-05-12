@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import PromptCard from '@/components/PromptCard';
 import AdSlot from '@/components/AdSlot';
+import PromptListGrid from '@/components/PromptListGrid';
 import { getPromptsByScenario, getAllScenarios, PromptData } from '@/lib/data';
 
 export function generateStaticParams() {
@@ -41,7 +41,7 @@ export default async function ScenarioPage({ params }: { params: Promise<{ scena
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-8">
+      <div className="mb-6">
         <nav className="mb-4 text-sm text-gray-500">
           <Link href="/" className="hover:text-gray-900">Home</Link>
           <span className="mx-2">/</span>
@@ -66,11 +66,7 @@ export default async function ScenarioPage({ params }: { params: Promise<{ scena
         </Link>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {prompts.map((prompt: PromptData) => (
-          <PromptCard key={prompt.slug} prompt={prompt} />
-        ))}
-      </div>
+      <PromptListGrid prompts={prompts} />
 
       <AdSlot slot="ad-slot-middle" />
 

@@ -333,7 +333,7 @@ export default function GeneratorPage() {
         <p className="text-sm text-gray-500">
           Or browse our{' '}
           <a href="/" className="font-medium text-blue-600 hover:text-blue-800">
-            library of 300+ tested prompts
+            library of 1000+ tested prompts
           </a>
         </p>
       </div>

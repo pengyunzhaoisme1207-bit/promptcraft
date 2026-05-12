@@ -30,6 +30,11 @@ export function getPromptsByCategory(category: string): PromptData[] {
   return prompts.filter((p: PromptData) => p.category === category);
 }
 
+export function getPromptsByDifficulty(difficulty: string): PromptData[] {
+  const prompts = readPrompts();
+  return prompts.filter((p: PromptData) => p.difficulty === difficulty);
+}
+
 export function getFeaturedPrompts(count: number = 6): PromptData[] {
   const prompts = readPrompts();
   return prompts.filter((p: PromptData) => p.featured).slice(0, count);
@@ -100,6 +105,36 @@ export function readGeneratorTemplates() {
 export function getAllSlugs() {
   const prompts = readPrompts();
   return prompts.map((p: PromptData) => p.slug);
+}
+
+export interface PromptCounts {
+  total: number;
+  byScenario: Record<string, number>;
+  byTool: Record<string, number>;
+  byCategory: Record<string, number>;
+  byDifficulty: Record<string, number>;
+}
+
+export function getPromptCounts(): PromptCounts {
+  const prompts = readPrompts();
+  const counts: PromptCounts = {
+    total: prompts.length,
+    byScenario: {},
+    byTool: {},
+    byCategory: {},
+    byDifficulty: {},
+  };
+
+  for (const p of prompts) {
+    counts.byScenario[p.scenario] = (counts.byScenario[p.scenario] || 0) + 1;
+    for (const tool of p.tools) {
+      counts.byTool[tool] = (counts.byTool[tool] || 0) + 1;
+    }
+    counts.byCategory[p.category] = (counts.byCategory[p.category] || 0) + 1;
+    counts.byDifficulty[p.difficulty] = (counts.byDifficulty[p.difficulty] || 0) + 1;
+  }
+
+  return counts;
 }
 
 export interface PromptData {

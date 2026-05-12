@@ -37,7 +37,7 @@ export default function HomePage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
             The same AI model with a better prompt produces dramatically different results.
-            Find the right prompt for any task — 300+ tested prompts for writing, coding, marketing, and more.
+            Find the right prompt for any task — 1000+ tested prompts for writing, coding, marketing, and more.
           </p>
           <div className="mt-10 flex justify-center">
             <SearchBar prompts={prompts} />
