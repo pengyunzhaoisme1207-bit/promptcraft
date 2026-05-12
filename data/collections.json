@@ -1,0 +1,52 @@
+{
+  "collections": [
+    {
+      "id": "collection-01",
+      "name": "Claude Code Prompts",
+      "slug": "claude-code-prompts",
+      "description": "Optimized prompts specifically for Claude Code — project planning, testing, refactoring, debugging, and documentation."
+    },
+    {
+      "id": "collection-02",
+      "name": "ChatGPT Productivity Essentials",
+      "slug": "chatgpt-productivity",
+      "description": "Essential prompts for using ChatGPT to boost your daily productivity — emails, meetings, planning, and personal organization."
+    },
+    {
+      "id": "collection-03",
+      "name": "Midjourney Photography Prompts",
+      "slug": "midjourney-photography",
+      "description": "Professional photography-style prompts for Midjourney — portraits, landscapes, products, and architecture."
+    },
+    {
+      "id": "collection-04",
+      "name": "Midjourney Portrait Prompts",
+      "slug": "midjourney-portrait",
+      "description": "Specialized portrait prompts for Midjourney v6 — character design, fashion, and artistic portraits."
+    },
+    {
+      "id": "collection-05",
+      "name": "Marketing Team Essentials",
+      "slug": "marketing-team-essentials",
+      "description": "Curated prompts for marketing teams — copywriting, email campaigns, ad copy, and content strategy."
+    },
+    {
+      "id": "collection-06",
+      "name": "Developer Workflow Essentials",
+      "slug": "developer-workflow-essentials",
+      "description": "Essential prompts for developers — debugging, code generation, review, and Claude Code workflows."
+    },
+    {
+      "id": "collection-07",
+      "name": "Student Study Prompts",
+      "slug": "student-study-prompts",
+      "description": "AI prompts for students — concept explanation, study planning, flashcards, and exam preparation."
+    },
+    {
+      "id": "collection-08",
+      "name": "Job Hunting Prompts",
+      "slug": "job-hunting-prompts",
+      "description": "Complete job search toolkit prompts — resume optimization, cover letters, interview prep, and LinkedIn profiles."
+    }
+  ]
+}

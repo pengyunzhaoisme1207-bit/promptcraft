@@ -1,65 +1,148 @@
-import Image from "next/image";
+import SearchBar from '@/components/SearchBar';
+import PromptCard from '@/components/PromptCard';
+import AdSlot from '@/components/AdSlot';
+import Link from 'next/link';
+import { readPrompts, getFeaturedPrompts, getAllScenarios } from '@/lib/data';
 
-export default function Home() {
+const scenarioConfig: Record<string, { label: string; icon: string }> = {
+  'writing-emails': { label: 'Email Writing', icon: '✉️' },
+  'writing-blog-post': { label: 'Blog Posts', icon: '📝' },
+  'creative-writing': { label: 'Creative Writing', icon: '✨' },
+  'coding-help': { label: 'Coding', icon: '💻' },
+  'data-analysis': { label: 'Data Analysis', icon: '📊' },
+  'marketing-copy': { label: 'Marketing', icon: '🎯' },
+  'image-generation': { label: 'Image Generation', icon: '🎨' },
+  'resume-cover-letter': { label: 'Resume & Cover Letter', icon: '📄' },
+  'learning-new-topic': { label: 'Learning', icon: '📚' },
+  'business-planning': { label: 'Business Planning', icon: '💼' },
+  'productivity-tasks': { label: 'Productivity', icon: '⚡' },
+};
+
+export default function HomePage() {
+  const prompts = readPrompts();
+  const featured = getFeaturedPrompts(6);
+  const scenarios = getAllScenarios();
+
+  const topScenarios = [
+    'writing-emails', 'writing-blog-post', 'coding-help', 'data-analysis', 'marketing-copy', 'image-generation',
+  ].filter(s => scenarios.includes(s));
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="bg-gradient-to-b from-blue-50 to-white py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+            Stop Getting Bad AI Results
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+            The same AI model with a better prompt produces dramatically different results.
+            Find the right prompt for any task — 300+ tested prompts for writing, coding, marketing, and more.
           </p>
+          <div className="mt-10 flex justify-center">
+            <SearchBar prompts={prompts} />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Scenario Quick Links */}
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900">Browse by Use Case</h2>
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {topScenarios.map((slug) => {
+              const config = scenarioConfig[slug];
+              if (!config) return null;
+              return (
+                <Link
+                  key={slug}
+                  href={`/for/${slug}`}
+                  className="flex flex-col items-center rounded-xl border border-gray-200 bg-white p-6 text-center transition hover:border-blue-300 hover:shadow-md"
+                >
+                  <span className="text-3xl">{config.icon}</span>
+                  <span className="mt-3 text-sm font-medium text-gray-900">{config.label}</span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Ad */}
+      <AdSlot slot="ad-slot-top" />
+
+      {/* Featured Prompts */}
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold text-gray-900">Featured Prompts This Week</h2>
+            <Link href="/" className="text-sm font-medium text-blue-600 hover:text-blue-800">
+              View all →
+            </Link>
+          </div>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((prompt) => (
+              <PromptCard key={prompt.slug} prompt={prompt} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Prompts Matter */}
+      <section className="border-t border-gray-200 bg-gray-50 py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-2xl font-bold text-gray-900">Why the Right Prompt Matters</h2>
+          <div className="mt-10 grid gap-8 md:grid-cols-2">
+            <div className="rounded-xl border border-red-200 bg-red-50 p-6">
+              <h3 className="text-lg font-semibold text-red-800">Without a Good Prompt</h3>
+              <p className="mt-3 text-sm text-red-700">
+                <strong>Input:</strong> &quot;Write me a marketing email&quot;
+              </p>
+              <p className="mt-2 text-sm text-red-600">
+                Generic, forgettable output that sounds like everyone else. Low open rates, no engagement.
+              </p>
+            </div>
+            <div className="rounded-xl border border-green-200 bg-green-50 p-6">
+              <h3 className="text-lg font-semibold text-green-800">With the Right Prompt</h3>
+              <p className="mt-3 text-sm text-green-700">
+                <strong>Input:</strong> &quot;You are a direct response copywriter. Write a personalized email for SaaS founders about our new AI feature...&quot;
+              </p>
+              <p className="mt-2 text-sm text-green-600">
+                Specific, compelling output that speaks directly to your audience and drives action.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 text-center">
+            <Link href="/guide/how-to-write-better-prompts" className="text-sm font-medium text-blue-600 hover:text-blue-800">
+              Learn the 5 core principles of better prompting →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Browse All Categories */}
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900">Browse by Category</h2>
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+            {topScenarios.map((slug) => {
+              const config = scenarioConfig[slug];
+              if (!config) return null;
+              const count = prompts.filter(p => p.scenario === slug).length;
+              return (
+                <Link
+                  key={slug}
+                  href={`/for/${slug}`}
+                  className="rounded-lg border border-gray-200 bg-white px-4 py-4 transition hover:border-blue-300 hover:shadow-sm"
+                >
+                  <div className="text-sm font-medium text-gray-900">{config.icon} {config.label}</div>
+                  <div className="mt-1 text-xs text-gray-500">{count} prompts</div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
