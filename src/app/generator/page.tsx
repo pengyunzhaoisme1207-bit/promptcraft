@@ -238,9 +238,12 @@ const templates: Template[] = [
 ];
 
 export default function GeneratorPage() {
+  const [mode, setMode] = useState<'generate' | 'reverse'>('generate');
   const [selectedType, setSelectedType] = useState(templates[0].type);
   const [values, setValues] = useState<Record<string, string>>({});
   const [generatedPrompt, setGeneratedPrompt] = useState('');
+  const [reverseContent, setReverseContent] = useState('');
+  const [reverseResult, setReverseResult] = useState('');
 
   const template = templates.find(t => t.type === selectedType)!;
 
@@ -263,6 +266,32 @@ export default function GeneratorPage() {
         Fill in the fields below and we&apos;ll generate a customized prompt for your AI.
       </p>
 
+      {/* Mode Tabs */}
+      <div className="mt-6 flex gap-2">
+        <button
+          onClick={() => setMode('generate')}
+          className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+            mode === 'generate'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          }`}
+        >
+          Generate from Template
+        </button>
+        <button
+          onClick={() => setMode('reverse')}
+          className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+            mode === 'reverse'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          }`}
+        >
+          Reverse Engineer
+        </button>
+      </div>
+
+      {mode === 'generate' && (
+        <>
       {/* Template Selector */}
       <div className="mt-8">
         <label htmlFor="template" className="block text-sm font-medium text-gray-700 mb-2">
@@ -336,6 +365,97 @@ export default function GeneratorPage() {
           </Link>
         </p>
       </div>
+        </>
+      )}
+
+      {mode === 'reverse' && (
+        <>
+          <div className="mt-8">
+            <label htmlFor="reverse-input" className="block text-sm font-medium text-gray-700 mb-2">
+              Paste any AI-generated content below
+            </label>
+            <textarea
+              id="reverse-input"
+              rows={10}
+              value={reverseContent}
+              onChange={(e) => setReverseContent(e.target.value)}
+              placeholder="Paste the AI-generated text here — an email, blog post, code snippet, marketing copy, etc."
+              className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            />
+          </div>
+
+          <div className="mt-6">
+            <button
+              onClick={() => {
+                if (!reverseContent.trim()) return;
+                const lines = reverseContent.split('\n').filter(Boolean);
+                const wordCount = reverseContent.trim().split(/\s+/).length;
+                const isCode = /function\s+\w+|const\s+\w+\s*=|import\s+from|class\s+\w+|def\s+\w+|<\w+>|<\/\w+>/.test(reverseContent);
+                const hasHeadings = /^#{1,3}\s/m.test(reverseContent) || /^(Subject|Dear|Hi|Hey|Thanks|Best|Regards|Sincerely)/im.test(reverseContent);
+                const hasLists = /^\s*[-*•]\s/m.test(reverseContent) || /^\d+\.\s/m.test(reverseContent);
+
+                let role = 'expert AI assistant';
+                let task = 'generate content based on the user request';
+                let format = 'clear, well-structured output';
+                const parts: string[] = [];
+
+                if (isCode) {
+                  role = 'expert software developer';
+                  task = 'write clean, production-ready code';
+                  format = 'code with comments and explanations';
+                  parts.push(`Language detected: The content appears to be ${reverseContent.includes('function') || reverseContent.includes('def') ? 'a function or method' : 'code'}.`);
+                } else if (hasHeadings && (reverseContent.toLowerCase().includes('subject') || reverseContent.toLowerCase().includes('dear') || reverseContent.toLowerCase().includes('regards'))) {
+                  role = 'senior business communication specialist';
+                  task = 'write a professional email or business correspondence';
+                  format = 'structured email with subject line, greeting, body paragraphs, and professional sign-off';
+                  parts.push('Type detected: Business email or formal correspondence.');
+                } else if (hasHeadings && wordCount > 300) {
+                  role = 'expert content writer and SEO specialist';
+                  task = 'write a comprehensive, well-structured blog post or article';
+                  format = 'article with clear headings, introduction, body sections, and conclusion';
+                  parts.push(`Type detected: Long-form content article (${wordCount} words).`);
+                } else if (hasLists) {
+                  role = 'expert listicle writer';
+                  task = 'create a structured list with explanations';
+                  format = 'numbered or bulleted list with a brief intro and conclusion';
+                  parts.push('Type detected: List-style content.');
+                } else if (wordCount > 100) {
+                  role = 'expert writer and communicator';
+                  task = 'produce clear, engaging content';
+                  format = 'well-structured prose with appropriate tone';
+                }
+
+                const prompt = `You are a ${role}. ${task}.\n\nContext: ${parts.join(' ')}\nContent length: approximately ${wordCount} words.\n\nGenerate content that matches the style, structure, and tone of the reference material. Include:\n- A compelling opening\n- ${hasLists ? 'Clearly numbered/bulleted items with explanations' : 'Well-organized body sections'}\n- A strong conclusion\n\nOutput format: ${format}`;
+
+                setReverseResult(prompt);
+              }}
+              className="w-full rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white hover:bg-blue-700 transition-colors"
+            >
+              Reverse Engineer Prompt
+            </button>
+          </div>
+
+          {reverseResult && (
+            <div className="mt-8">
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="text-lg font-semibold text-gray-900">Reconstructed Prompt</h2>
+                <button
+                  onClick={() => navigator.clipboard.writeText(reverseResult)}
+                  className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
+                >
+                  Copy to Clipboard
+                </button>
+              </div>
+              <pre className="whitespace-pre-wrap rounded-xl bg-gray-50 p-6 text-sm text-gray-800 border border-gray-200 font-mono leading-relaxed">
+                {reverseResult}
+              </pre>
+              <p className="mt-3 text-sm text-gray-500">
+                This prompt was reverse-engineered from your content. Paste it into ChatGPT, Claude, or any AI tool to generate similar output.
+              </p>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
