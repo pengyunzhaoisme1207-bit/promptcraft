@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import AdSlot from '@/components/AdSlot';
 import PromptCard from '@/components/PromptCard';
-import { readGuides, getGuideBySlug, readPrompts, getFeaturedPrompts, GuideData, PromptData } from '@/lib/data';
+import { readGuides, getGuideBySlug, getFeaturedPrompts, GuideData } from '@/lib/data';
 
 export function generateStaticParams() {
   return readGuides().map((guide: GuideData) => ({ slug: guide.slug }));

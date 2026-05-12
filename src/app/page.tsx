@@ -37,7 +37,7 @@ export default function HomePage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
             The same AI model with a better prompt produces dramatically different results.
-            Find the right prompt for any task — 1000+ tested prompts for writing, coding, marketing, and more.
+            Find curated prompts for real tasks, each with examples, usage notes, and customization guidance.
           </p>
           <div className="mt-10 flex justify-center">
             <SearchBar prompts={prompts} />
@@ -75,7 +75,7 @@ export default function HomePage() {
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-gray-900">Featured Prompts This Week</h2>
+            <h2 className="text-2xl font-bold text-gray-900">Featured Curated Prompts</h2>
             <Link href="/" className="text-sm font-medium text-blue-600 hover:text-blue-800">
               View all →
             </Link>

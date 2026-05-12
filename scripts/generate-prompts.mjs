@@ -534,6 +534,7 @@ const collectionMappings = {
   'job-hunting-prompts': [...resumeTitles.slice(0, 4)].map(t => t.toLowerCase().replace(/ /g, '-')),
   'content-creator-essentials': [...blogTitles.slice(0, 6)].map(t => t.toLowerCase().replace(/ /g, '-')),
 };
+void collectionMappings;
 
 // ============================================
 // Now let's fill in proper prompt text for categories that got template text

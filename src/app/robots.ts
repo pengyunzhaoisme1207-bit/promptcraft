@@ -1,9 +1,11 @@
 export default function robots() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://prompt.next-happy.com';
+
   return {
     rules: {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://prompt.next-happy.com/sitemap.xml',
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

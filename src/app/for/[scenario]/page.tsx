@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import AdSlot from '@/components/AdSlot';
 import PromptListGrid from '@/components/PromptListGrid';
-import { getPromptsByScenario, getAllScenarios, PromptData } from '@/lib/data';
+import { getPromptsByScenario, getAllScenarios } from '@/lib/data';
 
 export function generateStaticParams() {
   return getAllScenarios().map((scenario) => ({ scenario }));

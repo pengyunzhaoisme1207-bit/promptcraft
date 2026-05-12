@@ -3,11 +3,45 @@ import path from 'path';
 
 const dataDirectory = path.join(process.cwd(), 'data');
 
-export function readPrompts(): PromptData[] {
+const MAX_PROMPTS_PER_SCENARIO = 25;
+
+function readAllPrompts(): PromptData[] {
   const filePath = path.join(dataDirectory, 'prompts.json');
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const data = JSON.parse(fileContents);
   return data.prompts;
+}
+
+export function isPublishablePrompt(prompt: PromptData): boolean {
+  const promptText = prompt.prompt || '';
+
+  if (/\[SPECIFIC TASK based on prompt title\]/i.test(promptText)) {
+    return false;
+  }
+
+  if (/^You are an expert\. Help me with/i.test(promptText)) {
+    return false;
+  }
+
+  if (!prompt.when_to_use || !prompt.good_example || !prompt.bad_example || !prompt.how_to_customize) {
+    return false;
+  }
+
+  return true;
+}
+
+export function readPrompts(): PromptData[] {
+  const scenarioCounts: Record<string, number> = {};
+
+  return readAllPrompts().filter((prompt) => {
+    if (!isPublishablePrompt(prompt)) return false;
+
+    const currentCount = scenarioCounts[prompt.scenario] || 0;
+    if (currentCount >= MAX_PROMPTS_PER_SCENARIO) return false;
+
+    scenarioCounts[prompt.scenario] = currentCount + 1;
+    return true;
+  });
 }
 
 export function getPromptBySlug(slug: string): PromptData | undefined {

@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { readGeneratorTemplates } from '@/lib/data';
-
+import Link from 'next/link';
 interface Template {
   type: string;
   label: string;
@@ -332,9 +331,9 @@ export default function GeneratorPage() {
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-500">
           Or browse our{' '}
-          <a href="/" className="font-medium text-blue-600 hover:text-blue-800">
-            library of 1000+ tested prompts
-          </a>
+          <Link href="/" className="font-medium text-blue-600 hover:text-blue-800">
+            curated prompt library
+          </Link>
         </p>
       </div>
     </div>

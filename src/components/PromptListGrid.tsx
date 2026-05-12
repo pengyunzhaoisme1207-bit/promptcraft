@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import Link from 'next/link';
 import PromptCard from '@/components/PromptCard';
 import { PromptData } from '@/lib/data';
 
@@ -80,7 +79,7 @@ export default function PromptListGrid({ prompts, showGrouping = true }: PromptL
 
     const untagged = prompts.filter(p => !tagged.has(p.slug));
     return { groups, untagged: untagged.slice(0, 12) };
-  }, [prompts, search, difficultyFilter, showAll]);
+  }, [prompts, search, difficultyFilter, showAll, showGrouping]);
 
   if (prompts.length === 0) return null;
 
