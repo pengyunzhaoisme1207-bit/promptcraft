@@ -17,10 +17,10 @@
         "professional",
         "business"
       ],
-      "prompt": "You are an expert professional writer. Write a [TYPE] email that is clear, professional, and achieves its specific goal. Include appropriate greeting, body structured for the purpose, and professional closing. Context: [provide your specific situation, recipient, and desired outcome].",
-      "when_to_use": "Write a formal business email with the right tone and structure",
-      "bad_example": "Write me an email about this.",
-      "good_example": "A well-structured, professional email with clear purpose, appropriate tone, and specific call-to-action.",
+      "prompt": "You are a senior business communication expert with 15+ years of experience writing executive-level correspondence for Fortune 500 companies. Write a professional email that clearly communicates the purpose and drives the recipient toward the desired action.\n\nEmail type: {{email_type}}\nRecipient: {{recipient}}\nRelationship level: {{relationship}}\nContext/Situation: {{context}}\nDesired outcome: {{outcome}}\n\nStructure the email with:\n1. A compelling subject line\n2. Appropriate greeting based on relationship level\n3. Concise body organized around the core message\n4. Clear call-to-action or next step\n5. Professional sign-off with tone matching the audience",
+      "when_to_use": "Use when you need to write a professional business email — formal requests, follow-ups, proposals, or any email where tone and clarity matter. Provide the context, recipient, and desired outcome.",
+      "bad_example": "Write me a professional email to my boss about the project.",
+      "good_example": "I need to email my VP about a project delay. The recipient knows the project but not the technical details. I need them to approve a 2-week extension. Keep it concise but provide enough context for the decision.",
       "how_to_customize": "Replace bracketed placeholders with your specific details. Adjust tone based on your relationship with the recipient.",
       "advanced_version": "Write using proven communication frameworks (PAS, LAARC, or APP) with specific metrics, anticipatory answers to likely questions, and strategic persuasion techniques.",
       "related": [
@@ -30,7 +30,10 @@
       "featured": true,
       "collection": [
         "marketing-team-essentials"
-      ]
+      ],
+      "role": "You are a senior business communication expert with 15+ years of experience writing executive-level emails, proposals, and professional correspondence for Fortune 500 companies. You understand tone, persuasion psychology, and cross-cultural communication norms.",
+      "task": "Write a professional email that clearly communicates the purpose, provides necessary context, and drives the recipient toward the desired action. Structure the email with: (1) a compelling subject line, (2) appropriate greeting based on relationship level, (3) concise body organized around the core message, (4) clear call-to-action or next step, and (5) professional sign-off.",
+      "format": "Output the email in the following format:\n\n**Subject:** [one-line subject]\n\n**Greeting:** [appropriate salutation]\n\n**Opening:** [1-2 sentences stating purpose]\n\n**Body:** [2-3 short paragraphs with key points, evidence, or context]\n\n**Call to Action:** [clear next step with timeframe]\n\n**Sign-off:** [professional closing with name placeholder]"
     },
     {
       "id": "prompt-002",
@@ -1937,10 +1940,10 @@
         "copywriting",
         "business"
       ],
-      "prompt": "You are a professional marketing copywriter. [SPECIFIC TASK based on prompt title]. Product/Service: [product], Target audience: [audience], Unique selling proposition: [usp], Brand tone: [tone]. Write copy that converts using proven persuasion frameworks.",
-      "when_to_use": "Use this when you need marketing copy.",
-      "bad_example": "Write marketing copy for my product.",
-      "good_example": "Conversion-focused marketing copy that speaks directly to the target audience, highlights unique value, and includes a clear call-to-action.",
+      "prompt": "You are a senior direct-response copywriter with 10+ years of experience writing high-converting marketing copy for SaaS, e-commerce, and B2B brands. Write marketing copy that captures attention, builds desire, and drives action.\n\nProduct/Service: {{product}}\nTarget audience: {{audience}}\nUnique selling proposition: {{usp}}\nBrand tone: {{tone}}\nPrimary goal: {{goal}}\n\nUse the AIDA or PAS persuasion framework:\n1. Attention — compelling headline\n2. Interest — identify pain point or create curiosity\n3. Desire — specific benefits with vivid scenarios\n4. Action — clear, low-friction next step",
+      "when_to_use": "Use when you need marketing copy that converts — landing page hero sections, ad copy, email campaigns, or social media posts. Provide product details, audience, and the action you want readers to take.",
+      "bad_example": "Write me marketing copy for my product.",
+      "good_example": "I need a landing page hero section for an AI scheduling assistant. Target: busy startup founders. USP: it integrates with their existing calendar and automatically finds meeting times with prospects. Goal: get them to start a free trial.",
       "how_to_customize": "Define your [audience] specifically — age, pain points, goals. Articulate your [usp] in one sentence.",
       "advanced_version": "Write using proven direct response frameworks (AIDA, PAS, FAB, 4U). Include A/B test suggestions, psychological trigger notes, and platform-specific optimizations.",
       "related": [
@@ -1950,7 +1953,10 @@
       "featured": true,
       "collection": [
         "marketing-team-essentials"
-      ]
+      ],
+      "role": "You are a senior direct-response copywriter with 10+ years of experience writing high-converting marketing copy for SaaS, e-commerce, and B2B brands. You have studied over 10,000 ads, landing pages, and email campaigns, and you understand the psychological triggers that drive action.",
+      "task": "Write marketing copy that captures attention, builds desire, and drives the reader to take action. Use proven persuasion frameworks (AIDA or PAS) to structure the message. Consider the target audience's pain points, desired outcomes, and objections. The copy should feel authentic and specific, not generic.",
+      "format": "Structure the output as:\n\n**Headline:** [attention-grabbing, benefit-focused]\n**Hook:** [1-2 sentences that create curiosity or identify a pain point]\n**Body:** [2-3 paragraphs building desire with specific benefits, social proof, or vivid scenarios]\n**Call to Action:** [clear, urgent, low-friction next step]\n**Variant Suggestion:** [one alternative headline or angle to A/B test]"
     },
     {
       "id": "prompt-062",
@@ -2417,10 +2423,10 @@
         "debug",
         "troubleshooting"
       ],
-      "prompt": "You are an expert software engineer specializing in debugging. [SPECIFIC TASK based on prompt title]. Language/Framework: [language], Code snippet: [code], Error message: [error], Expected behavior: [expected]. Provide a systematic diagnosis with root cause analysis and a fix.",
-      "when_to_use": "Use this when you need help code error debugger in your code.",
-      "bad_example": "My code doesn't work. Fix it.",
-      "good_example": "A systematic diagnosis identifying the root cause with clear explanation, step-by-step fix, and prevention recommendations.",
+      "prompt": "You are an expert software engineer with deep debugging experience across Python, JavaScript, TypeScript, Java, Go, and Rust. Analyze the following code and error message to identify the root cause.\n\nLanguage/Framework: {{language}}\nCode snippet: {{code}}\nError message: {{error_message}}\nExpected behavior: {{expected_behavior}}\n\nFollow a systematic workflow:\n1. Reproduce the error mentally\n2. Trace the execution path step by step\n3. Identify the exact line and condition causing the failure\n4. Explain why it happens in plain language\n5. Provide the minimal fix\n6. Suggest a prevention pattern for the team's coding guidelines",
+      "when_to_use": "Use when you need to understand why your code is failing. Paste the code, the error message, and describe what you expected to happen — the AI will systematically diagnose the issue and provide a fix.",
+      "bad_example": "My code doesn't work, fix it.",
+      "good_example": "Here's a Python function that's supposed to return the sum of all even numbers in a list, but it's returning None instead. Here's the code and the stack trace...",
       "how_to_customize": "Provide the exact error message, relevant code snippet, and what you expected to happen. More context = better diagnosis.",
       "advanced_version": "Provide root cause analysis with code-level evidence, multiple fix options ranked by impact and risk, regression test suggestions, and prevention patterns for the team's coding guidelines.",
       "related": [
@@ -2430,7 +2436,10 @@
       "featured": true,
       "collection": [
         "developer-workflow-essentials"
-      ]
+      ],
+      "role": "You are a principal software engineer with deep expertise in debugging across multiple languages (Python, JavaScript/TypeScript, Java, Go, Rust). You have fixed thousands of production bugs and specialize in systematic root cause analysis, not just symptom patching.",
+      "task": "Analyze the provided code and error message to identify the root cause. Follow a systematic debugging workflow: (1) reproduce the error mentally, (2) trace the execution path, (3) identify the exact line and condition causing the failure, (4) explain why it happens in plain language, (5) provide the minimal fix, and (6) suggest a prevention pattern to avoid similar bugs in the future.",
+      "format": "Structure your response as:\n\n**Error Type:** [e.g., NullReferenceException, TypeError, Logic Error]\n**Root Cause:** [2-3 sentences explaining the underlying issue]\n**Location:** [specific file:line or code pattern]\n**Fix:** [corrected code snippet with explanation]\n**Prevention:** [one actionable pattern or best practice to prevent this class of error]"
     },
     {
       "id": "prompt-077",

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import AdSlot from '@/components/AdSlot';
 import PromptCard from '@/components/PromptCard';
 import CopyButton from '@/components/CopyButton';
+import RTFView from '@/components/RTFView';
 import { getPromptBySlug, readPrompts, getRelatedPrompts } from '@/lib/data';
 
 export function generateStaticParams() {
@@ -75,6 +76,9 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
         <h2 className="text-sm font-semibold text-blue-800 uppercase tracking-wide">When to Use This Prompt</h2>
         <p className="mt-2 text-gray-700">{prompt.when_to_use}</p>
       </div>
+
+      {/* RTF Structured View */}
+      <RTFView role={prompt.role} task={prompt.task} format={prompt.format} />
 
       {/* The Prompt */}
       <div className="mb-6">

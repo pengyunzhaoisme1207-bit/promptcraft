@@ -186,6 +186,10 @@ export interface PromptData {
   good_example: string;
   how_to_customize: string;
   advanced_version: string;
+  /** RTF structured fields */
+  role?: string;
+  task?: string;
+  format?: string;
   related: string[];
   featured: boolean;
   collection: string[];
