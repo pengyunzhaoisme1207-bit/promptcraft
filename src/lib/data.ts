@@ -171,6 +171,26 @@ export function getPromptCounts(): PromptCounts {
   return counts;
 }
 
+export interface PromptSearchItem {
+  title: string;
+  slug: string;
+  category: string;
+  scenario: string;
+  tags: string[];
+  when_to_use: string;
+}
+
+export function getPromptSearchIndex(): PromptSearchItem[] {
+  return readPrompts().map((prompt) => ({
+    title: prompt.title,
+    slug: prompt.slug,
+    category: prompt.category,
+    scenario: prompt.scenario,
+    tags: prompt.tags,
+    when_to_use: prompt.when_to_use,
+  }));
+}
+
 export interface PromptData {
   id: string;
   title: string;

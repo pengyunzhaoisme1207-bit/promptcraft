@@ -3,10 +3,10 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Fuse from 'fuse.js';
-import { PromptData } from '@/lib/data';
+import { PromptSearchItem } from '@/lib/data';
 
 interface SearchBarProps {
-  prompts: PromptData[];
+  prompts: PromptSearchItem[];
 }
 
 export default function SearchBar({ prompts }: SearchBarProps) {

@@ -1,11 +1,11 @@
-export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://prompt.next-happy.com';
+import { SITE_URL } from '@/lib/site';
 
+export default function robots() {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

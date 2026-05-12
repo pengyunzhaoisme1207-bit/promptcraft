@@ -2,7 +2,7 @@ import SearchBar from '@/components/SearchBar';
 import PromptCard from '@/components/PromptCard';
 import AdSlot from '@/components/AdSlot';
 import Link from 'next/link';
-import { readPrompts, getFeaturedPrompts, getAllScenarios } from '@/lib/data';
+import { readPrompts, getFeaturedPrompts, getAllScenarios, getPromptSearchIndex } from '@/lib/data';
 
 const scenarioConfig: Record<string, { label: string; icon: string }> = {
   'writing-emails': { label: 'Email Writing', icon: '✉️' },
@@ -20,6 +20,7 @@ const scenarioConfig: Record<string, { label: string; icon: string }> = {
 
 export default function HomePage() {
   const prompts = readPrompts();
+  const searchIndex = getPromptSearchIndex();
   const featured = getFeaturedPrompts(6);
   const scenarios = getAllScenarios();
 
@@ -40,7 +41,7 @@ export default function HomePage() {
             Find curated prompts for real tasks, each with examples, usage notes, and customization guidance.
           </p>
           <div className="mt-10 flex justify-center">
-            <SearchBar prompts={prompts} />
+            <SearchBar prompts={searchIndex} />
           </div>
         </div>
       </section>

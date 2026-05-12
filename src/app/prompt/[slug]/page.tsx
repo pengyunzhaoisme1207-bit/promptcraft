@@ -5,6 +5,7 @@ import PromptCard from '@/components/PromptCard';
 import CopyButton from '@/components/CopyButton';
 import RTFView from '@/components/RTFView';
 import { getPromptBySlug, readPrompts, getRelatedPrompts } from '@/lib/data';
+import { absoluteUrl, SITE_NAME, titleCaseSlug } from '@/lib/site';
 
 export function generateStaticParams() {
   const prompts = readPrompts();
@@ -15,9 +16,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const prompt = getPromptBySlug(slug);
   if (!prompt) return { title: 'Prompt Not Found' };
+  const scenarioLabel = titleCaseSlug(prompt.scenario);
+  const url = absoluteUrl(`/prompt/${prompt.slug}`);
   return {
-    title: `${prompt.title} - Free AI Prompt for ${prompt.scenario.replace(/-/g, ' ')} | PromptCraft`,
+    title: `${prompt.title} - AI Prompt for ${scenarioLabel} | PromptCraft`,
     description: prompt.when_to_use,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${prompt.title} | PromptCraft`,
+      description: prompt.when_to_use,
+      url,
+      siteName: SITE_NAME,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${prompt.title} | PromptCraft`,
+      description: prompt.when_to_use,
+    },
   };
 }
 
@@ -37,11 +55,53 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
 
   const related = getRelatedPrompts(prompt.related, prompt.slug, 6);
 
-  const scenarioLabel = prompt.scenario.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-  const categoryLabel = prompt.category.replace(/\b\w/g, (c) => c.toUpperCase());
+  const scenarioLabel = titleCaseSlug(prompt.scenario);
+  const categoryLabel = titleCaseSlug(prompt.category);
+  const pageUrl = absoluteUrl(`/prompt/${prompt.slug}`);
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: absoluteUrl('/'),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: scenarioLabel,
+        item: absoluteUrl(`/for/${prompt.scenario}`),
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: prompt.title,
+        item: pageUrl,
+      },
+    ],
+  };
+  const promptJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: prompt.title,
+    description: prompt.when_to_use,
+    url: pageUrl,
+    keywords: prompt.tags.join(', '),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: SITE_NAME,
+      url: absoluteUrl('/'),
+    },
+  };
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbJsonLd, promptJsonLd]) }}
+      />
       {/* Breadcrumb */}
       <nav className="mb-6 text-sm text-gray-500">
         <Link href="/" className="hover:text-gray-900">Home</Link>

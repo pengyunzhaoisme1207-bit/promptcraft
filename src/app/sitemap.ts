@@ -1,8 +1,7 @@
 import { readPrompts, readGuides, readCollections, getAllScenarios, getAllTools } from '@/lib/data';
+import { SITE_URL } from '@/lib/site';
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://prompt.next-happy.com';
-
   // Static pages
   const staticPages = [
     { url: '', changefreq: 'daily', priority: 1.0 },
@@ -35,7 +34,7 @@ export default async function sitemap() {
   ];
 
   return allPages.map(page => ({
-    url: `${baseUrl}${page.url}`,
+    url: `${SITE_URL}${page.url}`,
     lastModified: new Date(),
     changeFrequency: page.changefreq,
     priority: page.priority,

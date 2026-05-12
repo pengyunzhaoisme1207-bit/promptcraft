@@ -3,6 +3,7 @@ import Link from 'next/link';
 import AdSlot from '@/components/AdSlot';
 import PromptCard from '@/components/PromptCard';
 import { readGuides, getGuideBySlug, getFeaturedPrompts, GuideData } from '@/lib/data';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
 
 export function generateStaticParams() {
   return readGuides().map((guide: GuideData) => ({ slug: guide.slug }));
@@ -12,9 +13,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const guide = getGuideBySlug(slug);
   if (!guide) return { title: 'Guide Not Found' };
+  const description = `Learn ${guide.title.toLowerCase()} with practical examples and actionable tips.`;
+  const url = absoluteUrl(`/guide/${guide.slug}`);
   return {
     title: `${guide.title} - Complete Guide 2026 | PromptCraft`,
-    description: `Learn ${guide.title.toLowerCase()} with practical examples and actionable tips.`,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${guide.title} | PromptCraft`,
+      description,
+      url,
+      siteName: SITE_NAME,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${guide.title} | PromptCraft`,
+      description,
+    },
   };
 }
 
@@ -24,9 +42,26 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   if (!guide) notFound();
 
   const featured = getFeaturedPrompts(6);
+  const guideJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: guide.title,
+    description: `Learn ${guide.title.toLowerCase()} with practical examples and actionable tips.`,
+    url: absoluteUrl(`/guide/${guide.slug}`),
+    mainEntityOfPage: absoluteUrl(`/guide/${guide.slug}`),
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: absoluteUrl('/'),
+    },
+  };
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(guideJsonLd) }}
+      />
       <nav className="mb-6 text-sm text-gray-500">
         <Link href="/" className="hover:text-gray-900">Home</Link>
         <span className="mx-2">/</span>

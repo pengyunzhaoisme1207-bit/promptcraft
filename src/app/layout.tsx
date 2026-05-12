@@ -4,10 +4,27 @@ import "./globals.css";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Sidebar from '@/components/Sidebar';
+import { absoluteUrl, SITE_NAME, SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Curated AI Prompt Library for ChatGPT & Claude | PromptCraft",
   description: "Find practical AI prompts for real work. PromptCraft curates prompts with usage notes, examples, and customization guidance for writing, coding, marketing, and more.",
+  alternates: {
+    canonical: absoluteUrl('/'),
+  },
+  openGraph: {
+    title: "Curated AI Prompt Library for ChatGPT & Claude | PromptCraft",
+    description: "Find practical AI prompts for real work, with examples and customization guidance.",
+    url: absoluteUrl('/'),
+    siteName: SITE_NAME,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: "Curated AI Prompt Library for ChatGPT & Claude | PromptCraft",
+    description: "Find practical AI prompts for real work, with examples and customization guidance.",
+  },
 };
 
 export default function RootLayout({
@@ -27,6 +44,19 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="beforeInteractive"
         />
+        <Script id="website-jsonld" type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: SITE_NAME,
+            url: SITE_URL,
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: `${SITE_URL}/?q={search_term_string}`,
+              'query-input': 'required name=search_term_string',
+            },
+          })}
+        </Script>
         <Header />
         <div className="flex flex-1">
           <div className="hidden lg:block">

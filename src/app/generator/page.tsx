@@ -388,7 +388,6 @@ export default function GeneratorPage() {
             <button
               onClick={() => {
                 if (!reverseContent.trim()) return;
-                const lines = reverseContent.split('\n').filter(Boolean);
                 const wordCount = reverseContent.trim().split(/\s+/).length;
                 const isCode = /function\s+\w+|const\s+\w+\s*=|import\s+from|class\s+\w+|def\s+\w+|<\w+>|<\/\w+>/.test(reverseContent);
                 const hasHeadings = /^#{1,3}\s/m.test(reverseContent) || /^(Subject|Dear|Hi|Hey|Thanks|Best|Regards|Sincerely)/im.test(reverseContent);
