@@ -68,6 +68,11 @@ export default async function PromptPage({ params }: { params: Promise<{ slug: s
           }`}>
             {prompt.difficulty.charAt(0).toUpperCase() + prompt.difficulty.slice(1)}
           </span>
+          {prompt.version && (
+            <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-500 font-mono">
+              {prompt.version}
+            </span>
+          )}
         </div>
       </div>
 

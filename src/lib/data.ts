@@ -190,6 +190,8 @@ export interface PromptData {
   role?: string;
   task?: string;
   format?: string;
+  /** Version tracking */
+  version?: string;
   related: string[];
   featured: boolean;
   collection: string[];
