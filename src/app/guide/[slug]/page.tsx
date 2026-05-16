@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import AdSlot from '@/components/AdSlot';
+import MarkdownContent from '@/components/MarkdownContent';
 import PromptCard from '@/components/PromptCard';
 import { readGuides, getGuideBySlug, getFeaturedPrompts, GuideData } from '@/lib/data';
 import { absoluteUrl, SITE_NAME } from '@/lib/site';
@@ -77,7 +78,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           </span>
         ))}
 
-        <div className="mt-8 whitespace-pre-wrap text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: guide.content.replace(/\n/g, '<br/>') }} />
+        <div className="mt-8">
+          <MarkdownContent content={guide.content} />
+        </div>
       </article>
 
       <AdSlot slot="ad-slot-middle" />
