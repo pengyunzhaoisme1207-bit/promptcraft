@@ -1,4 +1,24 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: `Terms of Service | ${SITE_NAME}`,
+  description: 'PromptCraft terms of service covering prompt usage, advertising, external links, content accuracy, and site policies.',
+  alternates: { canonical: absoluteUrl('/terms-of-service') },
+  openGraph: {
+    title: `Terms of Service | ${SITE_NAME}`,
+    description: 'PromptCraft terms of service covering prompt usage, advertising, external links, content accuracy, and site policies.',
+    url: absoluteUrl('/terms-of-service'),
+    siteName: SITE_NAME,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: `Terms of Service | ${SITE_NAME}`,
+    description: 'PromptCraft terms of service covering prompt usage, advertising, external links, content accuracy, and site policies.',
+  },
+};
 
 export default function TermsOfServicePage() {
   return (

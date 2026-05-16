@@ -1,5 +1,25 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { readCollections, getFeaturedPrompts, CollectionData, PromptData } from '@/lib/data';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: `Curated Prompt Collections | ${SITE_NAME}`,
+  description: 'Browse hand-picked AI prompt collections organized by role, tool, workflow, study use case, and business task.',
+  alternates: { canonical: absoluteUrl('/collections') },
+  openGraph: {
+    title: `Curated Prompt Collections | ${SITE_NAME}`,
+    description: 'Browse hand-picked AI prompt collections organized by role, tool, workflow, study use case, and business task.',
+    url: absoluteUrl('/collections'),
+    siteName: SITE_NAME,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: `Curated Prompt Collections | ${SITE_NAME}`,
+    description: 'Browse hand-picked AI prompt collections organized by role, tool, workflow, study use case, and business task.',
+  },
+};
 
 export default function CollectionsPage() {
   const collections = readCollections();

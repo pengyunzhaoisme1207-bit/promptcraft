@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import PromptListGrid from '@/components/PromptListGrid';
 import { getPromptsByDifficulty } from '@/lib/data';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
 
 export function generateStaticParams() {
   return [{ difficulty: 'beginner' }, { difficulty: 'intermediate' }, { difficulty: 'advanced' }];
@@ -10,9 +11,24 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ difficulty: string }> }) {
   const { difficulty } = await params;
   const label = difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+  const description = `Browse ${difficulty.toLowerCase()} level AI prompts. Each prompt includes usage tips, examples, and customization guides.`;
+  const url = absoluteUrl(`/difficulty/${difficulty}`);
   return {
     title: `${label} AI Prompts - Free Templates | PromptCraft`,
-    description: `Browse ${difficulty.toLowerCase()} level AI prompts. Each prompt includes usage tips, examples, and customization guides.`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${label} AI Prompts | ${SITE_NAME}`,
+      description,
+      url,
+      siteName: SITE_NAME,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${label} AI Prompts | ${SITE_NAME}`,
+      description,
+    },
   };
 }
 

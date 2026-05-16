@@ -1,4 +1,24 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: `About | ${SITE_NAME}`,
+  description: 'Learn how PromptCraft curates practical AI prompts with usage context, examples, customization notes, and advanced prompt variants.',
+  alternates: { canonical: absoluteUrl('/about') },
+  openGraph: {
+    title: `About | ${SITE_NAME}`,
+    description: 'Learn how PromptCraft curates practical AI prompts with usage context, examples, customization notes, and advanced prompt variants.',
+    url: absoluteUrl('/about'),
+    siteName: SITE_NAME,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: `About | ${SITE_NAME}`,
+    description: 'Learn how PromptCraft curates practical AI prompts with usage context, examples, customization notes, and advanced prompt variants.',
+  },
+};
 
 export default function AboutPage() {
   return (

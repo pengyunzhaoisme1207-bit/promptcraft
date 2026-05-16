@@ -1,3 +1,24 @@
+import type { Metadata } from 'next';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: `Contact | ${SITE_NAME}`,
+  description: 'Contact PromptCraft for prompt corrections, content suggestions, privacy questions, and editorial feedback.',
+  alternates: { canonical: absoluteUrl('/contact') },
+  openGraph: {
+    title: `Contact | ${SITE_NAME}`,
+    description: 'Contact PromptCraft for prompt corrections, content suggestions, privacy questions, and editorial feedback.',
+    url: absoluteUrl('/contact'),
+    siteName: SITE_NAME,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: `Contact | ${SITE_NAME}`,
+    description: 'Contact PromptCraft for prompt corrections, content suggestions, privacy questions, and editorial feedback.',
+  },
+};
+
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
@@ -5,7 +26,7 @@ export default function ContactPage() {
       <div className="mt-8 space-y-6 text-gray-700">
         <p>Have a question, suggestion, or feedback? We&apos;d love to hear from you.</p>
         <p>
-          For general inquiries, you can reach us at <a href="mailto:hello@prompt.next-happy.com" className="text-blue-600 hover:text-blue-800">hello@prompt.next-happy.com</a>.
+          For general inquiries, corrections, or privacy questions, you can reach us at <a href="mailto:contact@next-happy.com" className="text-blue-600 hover:text-blue-800">contact@next-happy.com</a>.
         </p>
         <p>
           To submit a new prompt, visit our <a href="/submit" className="text-blue-600 hover:text-blue-800">Submit page</a>.

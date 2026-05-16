@@ -37,13 +37,15 @@ export default function RootLayout({
       lang="en"
       className="h-full antialiased"
     >
-      <body className="min-h-full flex flex-col">
+      <head>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7338826858147459"
           crossOrigin="anonymous"
           strategy="beforeInteractive"
         />
+      </head>
+      <body className="min-h-full flex flex-col">
         <Script id="website-jsonld" type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',

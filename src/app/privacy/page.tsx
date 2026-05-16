@@ -1,3 +1,24 @@
+import type { Metadata } from 'next';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: `Privacy Policy | ${SITE_NAME}`,
+  description: 'PromptCraft privacy policy covering static site usage, Google AdSense cookies, third-party links, and contact information.',
+  alternates: { canonical: absoluteUrl('/privacy') },
+  openGraph: {
+    title: `Privacy Policy | ${SITE_NAME}`,
+    description: 'PromptCraft privacy policy covering static site usage, Google AdSense cookies, third-party links, and contact information.',
+    url: absoluteUrl('/privacy'),
+    siteName: SITE_NAME,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: `Privacy Policy | ${SITE_NAME}`,
+    description: 'PromptCraft privacy policy covering static site usage, Google AdSense cookies, third-party links, and contact information.',
+  },
+};
+
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">

@@ -1,5 +1,25 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { readGuides, GuideData } from '@/lib/data';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: `Prompt Engineering Guides | ${SITE_NAME}`,
+  description: 'Learn prompt engineering with practical guides, case studies, frameworks, examples, and workflow advice for everyday AI users.',
+  alternates: { canonical: absoluteUrl('/guide') },
+  openGraph: {
+    title: `Prompt Engineering Guides | ${SITE_NAME}`,
+    description: 'Learn prompt engineering with practical guides, case studies, frameworks, examples, and workflow advice for everyday AI users.',
+    url: absoluteUrl('/guide'),
+    siteName: SITE_NAME,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: `Prompt Engineering Guides | ${SITE_NAME}`,
+    description: 'Learn prompt engineering with practical guides, case studies, frameworks, examples, and workflow advice for everyday AI users.',
+  },
+};
 
 export default function GuidesPage() {
   const guides = readGuides();

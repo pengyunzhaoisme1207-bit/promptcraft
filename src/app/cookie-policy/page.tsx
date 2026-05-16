@@ -1,3 +1,24 @@
+import type { Metadata } from 'next';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: `Cookie Policy | ${SITE_NAME}`,
+  description: 'PromptCraft cookie policy explaining Google AdSense advertising cookies, browser controls, and user choices.',
+  alternates: { canonical: absoluteUrl('/cookie-policy') },
+  openGraph: {
+    title: `Cookie Policy | ${SITE_NAME}`,
+    description: 'PromptCraft cookie policy explaining Google AdSense advertising cookies, browser controls, and user choices.',
+    url: absoluteUrl('/cookie-policy'),
+    siteName: SITE_NAME,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: `Cookie Policy | ${SITE_NAME}`,
+    description: 'PromptCraft cookie policy explaining Google AdSense advertising cookies, browser controls, and user choices.',
+  },
+};
+
 export default function CookiePolicyPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">

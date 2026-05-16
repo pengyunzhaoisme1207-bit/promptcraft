@@ -1,3 +1,24 @@
+import type { Metadata } from 'next';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: `Submit a Prompt | ${SITE_NAME}`,
+  description: 'Submit a high-quality AI prompt for editorial review on PromptCraft, including use case, tool compatibility, and customization notes.',
+  alternates: { canonical: absoluteUrl('/submit') },
+  openGraph: {
+    title: `Submit a Prompt | ${SITE_NAME}`,
+    description: 'Submit a high-quality AI prompt for editorial review on PromptCraft.',
+    url: absoluteUrl('/submit'),
+    siteName: SITE_NAME,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: `Submit a Prompt | ${SITE_NAME}`,
+    description: 'Submit a high-quality AI prompt for editorial review on PromptCraft.',
+  },
+};
+
 export default function SubmitPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
@@ -21,7 +42,7 @@ export default function SubmitPage() {
         </div>
 
         <p>
-          Send your submissions to <a href="mailto:submit@prompt.next-happy.com" className="text-blue-600 hover:text-blue-800">submit@prompt.next-happy.com</a>.
+          Send your submissions to <a href="mailto:contact@next-happy.com" className="text-blue-600 hover:text-blue-800">contact@next-happy.com</a> with the subject line &quot;PromptCraft submission&quot;.
         </p>
 
         <p className="text-sm text-gray-500">

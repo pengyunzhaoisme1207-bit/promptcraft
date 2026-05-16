@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import PromptListGrid from '@/components/PromptListGrid';
 import { getPromptsByCategory, getAllCategories } from '@/lib/data';
+import { absoluteUrl, SITE_NAME } from '@/lib/site';
 
 export function generateStaticParams() {
   return getAllCategories().map((category) => ({ category }));
@@ -10,9 +11,24 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params;
   const label = category.replace(/\b\w/g, (c) => c.toUpperCase());
+  const description = `Browse AI prompts for ${label.toLowerCase()}. Each prompt includes usage tips, examples, and customization guides.`;
+  const url = absoluteUrl(`/category/${category}`);
   return {
     title: `${label} AI Prompts - Free Templates | PromptCraft`,
-    description: `Browse AI prompts for ${label.toLowerCase()}. Each prompt includes usage tips, examples, and customization guides.`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${label} AI Prompts | ${SITE_NAME}`,
+      description,
+      url,
+      siteName: SITE_NAME,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${label} AI Prompts | ${SITE_NAME}`,
+      description,
+    },
   };
 }
 
