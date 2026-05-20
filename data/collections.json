@@ -213,6 +213,62 @@
         "cover-letter-career-change",
         "cover-letter-entry-level"
       ]
+    },
+    {
+      "id": "collection-09",
+      "name": "SEO Content Creation Prompts",
+      "slug": "seo-content-creation-prompts",
+      "description": "Prompts for planning, drafting, refreshing, and repurposing SEO content without turning every article into generic filler.",
+      "promptSlugs": [
+        "seo-content-brief-generator",
+        "blog-post-topic-ideation-expert",
+        "blog-post-outline-generator",
+        "blog-post-title-writer",
+        "blog-meta-description-writer",
+        "blog-introduction-writer",
+        "blog-conclusion-writer",
+        "how-to-guide-writer",
+        "case-study-writer",
+        "comparison-article-writer",
+        "listicle-post-builder",
+        "evergreen-content-updater",
+        "content-repurposing-prompt",
+        "blog-post-repurposing-prompt",
+        "faq-blog-post",
+        "data-driven-post",
+        "beginner-guide-post",
+        "advanced-tutorial-post",
+        "myth-busting-post",
+        "guest-post-template"
+      ]
+    },
+    {
+      "id": "collection-10",
+      "name": "Research and Analysis Prompts",
+      "slug": "research-analysis-prompts",
+      "description": "A practical prompt set for turning documents, research notes, spreadsheets, surveys, and market data into clearer decisions.",
+      "promptSlugs": [
+        "data-analysis-report-writer",
+        "survey-results-analyzer",
+        "trend-analysis-prompt",
+        "ab-test-results-interpreter",
+        "financial-summary-writer",
+        "kpi-dashboard-description",
+        "sales-performance-analyzer",
+        "customer-feedback-summarizer",
+        "website-traffic-analyzer",
+        "social-media-metrics-reporter",
+        "competitive-analysis-writer",
+        "market-research-summarizer",
+        "user-behavior-pattern-analyzer",
+        "conversion-funnel-analyst",
+        "revenue-forecast-generator",
+        "executive-summary-writer",
+        "statistical-summary",
+        "market-research",
+        "research-summarizer",
+        "requirements-analysis-prompt"
+      ]
     }
   ]
 }
