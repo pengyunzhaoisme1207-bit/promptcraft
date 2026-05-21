@@ -1,6 +1,7 @@
 import SearchBar from '@/components/SearchBar';
 import PromptCard from '@/components/PromptCard';
 import AdSlot from '@/components/AdSlot';
+import EditorialHero from '@/components/EditorialHero';
 import Link from 'next/link';
 import { readPrompts, getFeaturedPrompts, getAllScenarios, getPromptSearchIndex } from '@/lib/data';
 
@@ -30,21 +31,17 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-            Stop Getting Bad AI Results
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
-            The same AI model with a better prompt produces dramatically different results.
-            Find curated prompts for real tasks, each with examples, usage notes, and customization guidance.
-          </p>
-          <div className="mt-10 flex justify-center">
-            <SearchBar prompts={searchIndex} />
-          </div>
+      <EditorialHero
+        variant="home"
+        eyebrow="PromptCraft Library"
+        title="Stop Getting Bad AI Results"
+        description="The same AI model with a better prompt produces dramatically different results. Find curated prompts for real tasks, each with examples, usage notes, and customization guidance."
+        centered
+      >
+        <div className="flex justify-center">
+          <SearchBar prompts={searchIndex} />
         </div>
-      </section>
+      </EditorialHero>
 
       {/* Scenario Quick Links */}
       <section className="py-12 sm:py-16">

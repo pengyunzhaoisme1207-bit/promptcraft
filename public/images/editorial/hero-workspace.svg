@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="900" viewBox="0 0 1800 900" role="img" aria-label="Abstract editorial workspace background">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="0.52" stop-color="#eef6f8"/>
+      <stop offset="1" stop-color="#f8f3ea"/>
+    </linearGradient>
+    <radialGradient id="lamp" cx="26%" cy="18%" r="55%">
+      <stop offset="0" stop-color="#f9d28c" stop-opacity="0.55"/>
+      <stop offset="0.45" stop-color="#d8ebf4" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M 42 0 L 0 0 0 42" fill="none" stroke="#2d5364" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+  <rect width="1800" height="900" fill="url(#paper)"/>
+  <rect width="1800" height="900" fill="url(#grid)"/>
+  <rect width="1800" height="900" fill="url(#lamp)"/>
+  <g opacity="0.9">
+    <path d="M-80 690 C300 540 510 650 835 500 C1110 372 1410 310 1880 420 L1880 900 L-80 900 Z" fill="#dbeef0"/>
+    <path d="M-60 760 C280 640 610 760 910 612 C1225 457 1488 512 1850 610 L1850 900 L-60 900 Z" fill="#f4dfbb" opacity="0.55"/>
+  </g>
+  <g filter="url(#soft)" opacity="0.75">
+    <ellipse cx="1285" cy="224" rx="250" ry="112" fill="#9ccbd6"/>
+    <ellipse cx="590" cy="210" rx="230" ry="96" fill="#f0c987"/>
+  </g>
+  <g fill="none" stroke="#1f3f4d" stroke-opacity="0.22" stroke-width="2">
+    <path d="M1030 180 H1420"/>
+    <path d="M1070 230 H1530"/>
+    <path d="M1110 280 H1370"/>
+    <path d="M250 292 H626"/>
+    <path d="M210 342 H550"/>
+  </g>
+  <g transform="translate(1125 420) rotate(-4)" opacity="0.75">
+    <rect x="0" y="0" width="315" height="210" rx="8" fill="#ffffff" fill-opacity="0.72" stroke="#224553" stroke-opacity="0.16"/>
+    <path d="M36 48 H250 M36 84 H278 M36 120 H218 M36 156 H260" stroke="#2c5968" stroke-opacity="0.28" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(1365 250) rotate(8)" opacity="0.52">
+    <rect x="0" y="0" width="230" height="150" rx="8" fill="#ffffff" fill-opacity="0.64" stroke="#224553" stroke-opacity="0.14"/>
+    <circle cx="48" cy="52" r="18" fill="#7aaeb9" fill-opacity="0.45"/>
+    <path d="M86 46 H180 M48 92 H184" stroke="#2c5968" stroke-opacity="0.25" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>

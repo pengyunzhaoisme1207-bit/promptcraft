@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="760" viewBox="0 0 1800 760" role="img" aria-label="Abstract guide archive background">
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfaf6"/>
+      <stop offset="0.5" stop-color="#eef7f4"/>
+      <stop offset="1" stop-color="#f7efe1"/>
+    </linearGradient>
+    <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#244d5a" fill-opacity="0.13"/>
+    </pattern>
+    <linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#356875" stop-opacity="0.2"/>
+      <stop offset="0.55" stop-color="#ddb771" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1800" height="760" fill="url(#base)"/>
+  <rect width="1800" height="760" fill="url(#dots)"/>
+  <path d="M-40 204 C290 110 488 250 760 156 C1025 64 1240 90 1840 12 L1840 0 L-40 0 Z" fill="url(#band)"/>
+  <path d="M-70 620 C260 496 560 612 845 480 C1120 350 1400 370 1870 250 L1870 760 L-70 760 Z" fill="#d8ece9" opacity="0.64"/>
+  <path d="M-70 686 C280 590 570 684 900 548 C1188 430 1440 482 1870 380 L1870 760 L-70 760 Z" fill="#f1dcb4" opacity="0.46"/>
+  <g opacity="0.75" transform="translate(1000 130)">
+    <rect x="0" y="0" width="210" height="300" rx="8" fill="#ffffff" fill-opacity="0.62" stroke="#244d5a" stroke-opacity="0.13"/>
+    <rect x="260" y="46" width="210" height="300" rx="8" fill="#ffffff" fill-opacity="0.58" stroke="#244d5a" stroke-opacity="0.13"/>
+    <rect x="520" y="10" width="210" height="300" rx="8" fill="#ffffff" fill-opacity="0.5" stroke="#244d5a" stroke-opacity="0.12"/>
+    <path d="M38 56 H170 M38 95 H144 M38 135 H178 M298 104 H428 M298 144 H398 M558 68 H690 M558 108 H660" stroke="#244d5a" stroke-opacity="0.22" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

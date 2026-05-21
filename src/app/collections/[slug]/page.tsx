@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import EditorialHero from '@/components/EditorialHero';
 import PromptListGrid from '@/components/PromptListGrid';
 import { getCollectionBySlug, readCollections, CollectionData } from '@/lib/data';
 
@@ -32,22 +33,24 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <nav className="mb-6 text-sm text-gray-500">
-        <Link href="/" className="hover:text-gray-900">Home</Link>
-        <span className="mx-2">/</span>
-        <Link href="/collections" className="hover:text-gray-900">Collections</Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900">{collection.name}</span>
-      </nav>
+    <>
+      <EditorialHero
+        variant="collections"
+        eyebrow={`${collection.prompts.length} curated prompts`}
+        title={collection.name}
+        description={collection.description}
+      />
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <nav className="mb-6 text-sm text-gray-500">
+          <Link href="/" className="hover:text-gray-900">Home</Link>
+          <span className="mx-2">/</span>
+          <Link href="/collections" className="hover:text-gray-900">Collections</Link>
+          <span className="mx-2">/</span>
+          <span className="text-gray-900">{collection.name}</span>
+        </nav>
 
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">{collection.name}</h1>
-        <p className="mt-3 text-lg text-gray-600">{collection.description}</p>
-        <p className="mt-2 text-sm text-gray-500">{collection.prompts.length} curated prompts</p>
+        <PromptListGrid prompts={collection.prompts} showGrouping={false} />
       </div>
-
-      <PromptListGrid prompts={collection.prompts} showGrouping={false} />
-    </div>
+    </>
   );
 }
